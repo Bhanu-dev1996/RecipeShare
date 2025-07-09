@@ -158,34 +158,102 @@ const translations = {
     error: "Error",
     success: "Éxito",
   },
+
+  fr: {
+    all: "Tout",
+    breakfast: "Petit-déjeuner",
+    lunch: "Déjeuner",
+    dinner: "Dîner",
+    dessert: "Dessert",
+    search: "Rechercher",
+    addRecipe: "Ajouter une recette",
+    edit: "Modifier",
+    delete: "Supprimer",
+    save: "Enregistrer",
+    cancel: "Annuler",
+    ingredients: "Ingrédients",
+    instructions: "Instructions",
+    welcome: "Bienvenue sur RecipeShare!",
+    language: "Langue",
+    submit: "Soumettre",
+    close: "Fermer",
+    next: "Suivant",
+    previous: "Précédent",
+    loading: "Chargement...",
+    noResults: "Aucun résultat trouvé.",
+    confirmDelete: "Êtes-vous sûr de vouloir supprimer?",
+    yes: "Oui",
+    no: "Non",
+    home: "Accueil",
+    profile: "Profil",
+    logout: "Déconnexion",
+    login: "Connexion",
+    register: "S'inscrire",
+  },
+
+  de: {
+    all: "Alle",
+    breakfast: "Frühstück",
+    lunch: "Mittagessen",
+    dinner: "Abendessen",
+    dessert: "Nachtisch",
+    search: "Suchen",
+    addRecipe: "Rezept hinzufügen",
+    edit: "Bearbeiten",
+    delete: "Löschen",
+    save: "Speichern",
+    cancel: "Abbrechen",
+    ingredients: "Zutaten",
+    instructions: "Anleitung",
+    welcome: "Willkommen bei RecipeShare!",
+    language: "Sprache",
+    submit: "Absenden",
+    close: "Schließen",
+    next: "Weiter",
+    previous: "Zurück",
+    loading: "Wird geladen...",
+    noResults: "Keine Ergebnisse gefunden.",
+    confirmDelete: "Möchten Sie wirklich löschen?",
+    yes: "Ja",
+    no: "Nein",
+    home: "Startseite",
+    profile: "Profil",
+    logout: "Abmelden",
+    login: "Anmelden",
+    register: "Registrieren",
+  },
 }
 
 const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
+  // Always default to "en" for SSR
   const [language, setLanguage] = useState("en")
 
+  // On client, you can hydrate from localStorage, cookie, or browser language
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("recipe-share-language")
-    if (savedLanguage && translations[savedLanguage]) {
-      setLanguage(savedLanguage)
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("language")
+      if (stored && translations[stored]) {
+        setLanguage(stored)
+      }
+      // Or use browser language:
+      // const browserLang = navigator.language.slice(0, 2);
+      // if (translations[browserLang]) setLanguage(browserLang);
     }
   }, [])
 
+  // Save language changes to localStorage
   useEffect(() => {
-    localStorage.setItem("recipe-share-language", language)
-    document.documentElement.lang = language
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr"
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", language)
+    }
   }, [language])
 
-  const value = {
-    language,
-    setLanguage,
-    t: translations[language],
-  }
+  const t = translations[language]
 
   return (
-    <LanguageContext.Provider value={value}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   )
