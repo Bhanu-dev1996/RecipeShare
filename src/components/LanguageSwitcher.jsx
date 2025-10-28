@@ -7,12 +7,12 @@ import { useLanguage } from "@/hooks/useLanguage" // Ensure this is a JS-compati
 const languages = [
   { code: "en", name: "English", flag: "🇺🇸" },
   { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "it", name: "Italiano", flag: "🇮🇹" },
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
-  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  // { code: "fr", name: "Français", flag: "🇫🇷" },
+  // { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  // { code: "it", name: "Italiano", flag: "🇮🇹" },
+  // { code: "zh", name: "中文", flag: "🇨🇳" },
+  // { code: "ja", name: "日本語", flag: "🇯🇵" },
+  // { code: "ar", name: "العربية", flag: "🇸🇦" },
 ]
 
 export default function LanguageSwitcher() {
