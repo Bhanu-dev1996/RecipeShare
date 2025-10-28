@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Navigation from "@/components/navigation"
+import Navigation from "@/components/Navigation"
 import HeroSectionWrapper from "@/components/HeroSectionWrapper"
 import RecipeSection from "@/components/RecipeSection"
 import AboutSection from "@/components/AboutSection"
@@ -9,7 +9,7 @@ import ContactSection from "@/components/ContactSection"
 import RecipeModal from "@/components/RecipeModal"
 import ChatAssistant from "@/components/ChatAssistant"
 import SocialIcons from "@/components/SocialIcons"
-import Footer from "@/components/footer"
+import Footer from "@/components/Footer"
 import { LanguageProvider, useLanguage } from "@/hooks/useLanguage"
 import sampleRecipes from "../data/sampleRecipes"
 
